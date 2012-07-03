@@ -11,13 +11,18 @@
     hideWaitBox: function() {
       return $.mobile.hidePageLoadingMsg();
     },
-    reloadPage: function() {
-      return $.mobile.changePage(window.location.href, {
+    reloadPage: function(opts) {
+      var defaults;
+      if (opts == null) {
+        opts = {};
+      }
+      defaults = {
         allowSamePageTransition: true,
         transition: 'none',
         showLoadMsg: false,
         reloadPage: true
-      });
+      };
+      return $.mobile.changePage(window.location.href, $.extend(defaults, opts));
     }
   };
 

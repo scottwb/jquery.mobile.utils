@@ -8,10 +8,11 @@ $.mobile.utils =
   hideWaitBox: ->
     $.mobile.hidePageLoadingMsg()
 
-  reloadPage: ->
-    $.mobile.changePage window.location.href,
+  reloadPage: (opts) ->
+    opts = {} unless opts?
+    defaults =
       allowSamePageTransition : true,
       transition              : 'none',
       showLoadMsg             : false,
       reloadPage              : true
-    
+    $.mobile.changePage window.location.href, $.extend(defaults, opts)
